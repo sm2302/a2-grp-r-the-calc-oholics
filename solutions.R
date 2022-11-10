@@ -106,4 +106,39 @@ prob = sum / n
 
 prob
 
-# Method C ----
+# Method C (Random Midpoint) ----
+
+n = 1000 # number of trials
+l = c() # create an empty matrix
+#
+for (i in 1:n){
+  
+  # Coordinates of random midpoint
+  r = sqrt(runif(1))
+  theta = 2 * pi * runif(1)
+  rdmpnt_df <- tibble(
+    x    = r * cos(theta),
+    y    = r * sin(theta),
+  )
+  
+  # Finding length or chord
+  x = rdmpnt_df[1]
+  y = rdmpnt_df[2]
+  
+  length = 2 * sqrt(1 - x ^ 2 - y ^ 2)
+  
+  # Assigning chords 0's or 1's
+  # 0 -shorter
+  # 1 - longer
+  l[i] = floor(length / sqrt(3))
+}
+
+# Finding number of succesful outcomes
+sum = 0
+
+for (i in 1:n)
+  sum = sum + l[[i]]
+
+# Finding probability
+prob = sum / n
+prob
