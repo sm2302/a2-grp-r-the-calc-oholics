@@ -27,9 +27,8 @@ for (i in 1:n){
     yend = sample(c(sqrt(1 - (xend)^2), -sqrt(1 - (xend)^2)), 1)
   )
   
-  # Draw a random chord in a unit circle centred at origin
   # Plot
-  p <- ggplot() +
+  ggplot() +
     ggforce::geom_circle(aes(x0 = 0, y0 = 0, r = 1), col = "gray50") +
     geom_segment(data = eqtri_df, aes(x = x, y = y, xend = xend, yend = yend)) +
     geom_segment(data = rdmchr_df, aes(x = x, y = y, xend = xend, yend = yend),
@@ -45,10 +44,6 @@ for (i in 1:n){
   l[i] = floor(sqrt((x - xend) ^ 2 + (y-yend) ^ 2) / sqrt(3))
   # 0 - shorter
   # 1 - longer
-  
-  if (l[i] == 1){
-    print(p)
-  }
 }
 
 # Finding Number of Longer Length
