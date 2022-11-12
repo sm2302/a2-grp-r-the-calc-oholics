@@ -14,7 +14,7 @@ eqtri_df <- tibble(
   yend = c(-0.5, -0.5, 1)
 )
 
-# Method A ----
+# Method A (Two Random Endpoints)----
 n = 1000
 l = c()
 
@@ -46,7 +46,7 @@ for (i in 1:n){
   # 1 - longer
 }
 
-# Finding Number of Longer Length
+# Finding Number of Successful Outcomes
 sum = 0
 
 for (i in 1:n)
@@ -56,10 +56,10 @@ for (i in 1:n)
 prob = sum / n
 prob
 
-# Method B ----
+# Method B (Random Radius and Point)----
 
-n = 1000
-l = c()
+n = 1000 # number of trials
+l = c() # create an empty matrix
 
 # Coordinates of random radius
 
@@ -89,18 +89,23 @@ for (i in 1:n){
                  col = "red3") +
     coord_equal()
   
-  #Find length
+  # Finding length of chord
+  # Assigning chords 0's or 1's
+  # 0 -shorter
+  # 1 - longer
   
   x = rdmpnt_df[1]
   y = rdmpnt_df[2]
   l[i] = floor(2 * sqrt(1 - x ^ 2 - y ^ 2) / sqrt(3))
 }
 
+# Finding number of succesful outcomes
 sum = 0
 
 for (i in 1:n)
   sum = sum + l[[i]]
 
+# Finding probability
 prob = sum / n
 
 prob
